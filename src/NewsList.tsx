@@ -1,24 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export const NewsList = () => {
-    async function newsGetter() {
+    const [resState, setResState] = useState<any>()
+    // async function newsGetter() {
         // d8053b5977f94849b3de7f2fe5e83ffa
-        let res = await fetch(`https://newsapi.org/v2/everything?q=sports&language=ru&apiKey=d8053b5977f94849b3de7f2fe5e83ffa`).then((res) => res.json())
-        // .then((res) => console.log(res))
-        // let json = await res.json()
-        await console.log(res)
-        res.articles.map((item) => {
-            console.log(item)
-            let wrapper = document.createElement('div');
-            wrapper.style.height = '50px';
-            wrapper.innerHTML = item.description;
-            body.append(wrapper)
-        })
-    }
-    newsGetter()
+    useEffect(() => {
+        fetch(`https://newsapi.org/v2/everything?q=sports&language=ru&apiKey=d8053b5977f94849b3de7f2fe5e83ffa`).then((res) => res.json()).then((res) => setResState(res))
+    }, [])
+
+    resState && console.log(resState)
     return (
         <div>
-
+            {resState && resState.articles.map((item: any, index: number) => {
+                return (
+                  <div key={index}>
+                      <h2>{item.title}</h2>
+                      <p>{item.author}</p>
+                      <p>{item.descriotion}</p>
+                  </div>
+                )
+            })}
         </div>
     );
 };
