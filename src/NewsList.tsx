@@ -1,24 +1,27 @@
 import React, { useEffect } from 'react';
 
 export const NewsList = () => {
-    async function newsGetter() {
-        // d8053b5977f94849b3de7f2fe5e83ffa
-        let res = await fetch(`https://newsapi.org/v2/everything?q=sports&language=ru&apiKey=d8053b5977f94849b3de7f2fe5e83ffa`).then((res) => res.json())
-        // .then((res) => console.log(res))
-        // let json = await res.json()
-        await console.log(res)
-        res.articles.map((item) => {
-            console.log(item)
-            let wrapper = document.createElement('div');
-            wrapper.style.height = '50px';
-            wrapper.innerHTML = item.description;
-            body.append(wrapper)
-        })
+    console.log(+(Math.random()*33).toFixed());
+    function blockRandomizer() {
+        return <div style={
+            {
+                borderRadius: '5px',
+                width: +(Math.random()*250 + 100).toFixed(),
+                height: +(Math.random()*250 + 100).toFixed(),
+                backgroundColor: `#${+(Math.random()*90+9).toFixed()}${+(Math.random()*90+9).toFixed()}${+(Math.random()*90+9).toFixed()}`}
+        }>{+(Math.random()*100 + 50).toFixed()}</div>
     }
-    newsGetter()
     return (
-        <div>
-
+        <div style={{display: "flex", flexWrap: 'wrap', gap: '10px', width: '900px'}}>
+            {blockRandomizer()}
+            {blockRandomizer()}
+            {blockRandomizer()}
+            {blockRandomizer()}
+            {blockRandomizer()}
+            {blockRandomizer()}
+            {blockRandomizer()}
+            {blockRandomizer()}
+            {blockRandomizer()}
         </div>
     );
 };
