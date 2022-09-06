@@ -21,7 +21,6 @@ export const NewsList = () => {
             {blockRandomizer()}
             {blockRandomizer()}
             {blockRandomizer()}
-            {blockRandomizer()}
         </div>
     );
 };
